@@ -1,6 +1,11 @@
 from pyswip import Prolog
+import tkinter
 prolog = Prolog()
 prolog.consult("baseDeConocimiento.pl")
+
+ventana = tkinter.Tk()
+ventana.geometry("800x600")
+ventana.mainloop()
 #list(prolog.query("father(michael,X)")) == [{'X': 'john'}, {'X': 'gina'}]
 for soln in prolog.query("juegos(V,'Plataforma',X,Y,Z)"):
     print(soln["V"])

@@ -1,6 +1,6 @@
 %juegos(nombre,genero,duracion,categoriaSpeed,decada)
 %generos(genero,experiencia)
-%adicional(genero,ingenio)
+%adicional(genero,extra,nombreJuego)
 
 %Decada de los 90
 
@@ -13,8 +13,9 @@ juegos('Super metroid', 'Plataforma', 'Media', 'any%', 90).
 
 juegos('Ultimate doom', 'FPS', 'Corta', 'knee deep in the dead', 90).
 juegos('Wolfenstein', 'FPS', 'Larga', 'Episode1: escape from wolfenstein', 90).
-juegos('Half-life', 'FPS', 'Corta', 'Won', 90)..
+juegos('Half-life', 'FPS', 'Corta', 'Won', 90).
 
+%GENERO: ARCADE
 juegos('Street fighter II-the world warrior', 'Arcade', 'Corta', 'Normal', 90).%Preguntar
 juegos('Mortal kombat', 'Arcade', 'Corta', 'Arcade', 90).
 juegos('Metal slug', 'Arcade', 'Corta', 'Medium', 90).
@@ -26,7 +27,7 @@ juegos('Metal slug', 'Arcade', 'Corta', 'Medium', 90).
 %Carreras
 juegos('Forza Moto Sport','Carreras','Corta','individualLevels',2000).
 juegos('Grand Turismo 4','Carreras','Larga','any%',2000).
-juegos('Need For Speed Carbon','Carreras','Larga','any%,'2000). 
+juegos('Need For Speed Carbon','Carreras','Larga','any%',2000). 
 
 %Deportes
 juegos('tony hawks pro skater 4','Deportes','Media','any%',2000).
@@ -47,7 +48,7 @@ juegos('Resident Evil 4 (Console)' ,'Accion-Avetura','Largo','NewGame',2000).
 
 %decada de los 2010
 
-%GENERO RPG
+%GENERO: RPG
 juegos('sekiro shadow of the die twice','RPG','Corta','shura',2010).
 juegos('dark souls','RPG','Corta','any%',2010).
 juegos('bloodborne' ,'RPG','Corta' ,'any%',2010).

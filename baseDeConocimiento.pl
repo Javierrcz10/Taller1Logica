@@ -78,3 +78,15 @@ juegos('Persona 5 royal ', 'RPG', 'Larga','hard,true ending', 2020).
 juegos('Nba 2k22 ', 'Deportes', 'Corta','play now', 2020).
 juegos('Fifa 2020 ', 'Deportes', 'Corta', 'hampions league', 2020).
 juegos('Mario golf super rush ', 'Deportes', 'Media','all courses', 2020).
+
+generos('Plataforma', 'Inexperto').
+generos('FPS', 'Experto').
+generos('Arcade', 'Habil').
+generos('Carreras', 'Habil').
+generos('Deportes', 'Inexperto').
+generos('Accion-Avetura', 'Habil').
+generos('RPG', 'Experto').
+generos('Pelicula interactiva', 'Inexperto').
+generos('Musica', 'Inexperto').
+
+adicional('Pelicula interactiva','Ingenio').

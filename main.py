@@ -1,10 +1,9 @@
-from tkinter import messagebox
+import PySimpleGUI as sg
 from pyswip import Prolog
-import tkinter as tk
+
 
 def queryFinal(habilidad,decada,duracion):
     queryStr = f"generos(M,'{habilidad}'),juegos(V,M,'{duracion}',Y,{decada})"
-    #queryStr = f"generos(M,'{habilidad}')"
     print(queryStr)
     for i in prolog.query(queryStr):
         print(i)
@@ -16,7 +15,7 @@ def queryFinalExtra(habilidad,decada,duracion,extra):
 
 def verificar():
     if opcionDecada.get() == 0 or opcionDuracion.get() == 0 or opcionExperiencia.get() == 0:
-        messagebox.showinfo(message="Debes marcar todas", title="Error al buscar")
+        
         return None
     
     habilidad = experiencias[opcionExperiencia.get()-1]
@@ -28,38 +27,53 @@ def verificar():
         extra = extras[opcionExtra.get()-1]
         queryFinalExtra(habilidad,decada,duracion,extra)
 
+
+
+
 prolog = Prolog()
 prolog.consult("baseDeConocimiento.pl")
 
-ventana = tk.Tk()
-ventana.geometry("400x300")
 
-opcionExtra = tk.IntVar()
-opcionDecada = tk.IntVar()
-opcionDuracion = tk.IntVar()
-opcionExperiencia = tk.IntVar()
 
-checkboxesDecada = []
 decadas = ['90','2000','2010','2020']
-for i in range(4):
-    checkboxesDecada.append(tk.Checkbutton(ventana, text = decadas[i],onvalue=i + 1, variable=opcionDecada))  
-    checkboxesDecada[i].grid(row = i, column = 1, padx=15) 
-
-checkboxesDuracion = []
 duraciones = ['Larga','Media','Corta']
-for j in range (3):
-    checkboxesDuracion.append(tk.Checkbutton(ventana, text = duraciones[j],onvalue=j + 1, variable=opcionDuracion))  
-    checkboxesDuracion[j].grid(row = j, column = 2,padx=15)
-
-checkboxesExperiencia = []
 experiencias = ['Inexperto','Habil','Experto']
-for k in range(3):
-    checkboxesExperiencia.append(tk.Checkbutton(ventana, text = experiencias[k],onvalue=k + 1, variable=opcionExperiencia))  
-    checkboxesExperiencia[k].grid(row = k, column = 3,padx=15)
+extras = ['2D','Precisión','Simulación','Competitivo','Exploración','Ingenio','Toma de decisiones','Reflejos']
 
-extras = []
-btn = tk.Button(text="buscar",command= lambda: verificar())
-btn.grid(row = 6, column = 3)
-ventana.mainloop()
+#Contruir el contenido de la ventana principal
+layoutPrincipal = [[sg.Text("(Obligatorio)  Década:"),sg.Stretch(), sg.Combo(values = decadas,  key= "Decada", size=(18,4),readonly=True) ],
+                   [sg.Text("(Obligatorio)  Experiencia:"),sg.Stretch(),sg.Combo(values = experiencias, key = "Experiencia", size=(18,4),readonly=True)],
+                   [sg.Text("(Obligatorio)  Duración:"),sg.Stretch(),sg.Combo(values = duraciones, key = "Duracion", size=(18,4),readonly=True)],
+                   [sg.Text("Extra:"),sg.Stretch(),sg.Combo(values = extras, key = "Extra", readonly=True, size=(18,4))],
+                   [sg.Stretch(),sg.OK(button_text="Buscar")],
+                   [sg.Text("Respuesta:")],
+                   [sg.Output(key = "Resultado")]]
+
+
+#Crear la ventana
+window = sg.Window("Recomendador", layoutPrincipal,resizable=True)
+
+#Ciclo while para registrar los eventos de la ventanas
+loop = True
+while loop:
+    evento, valores = window.read()
+    print(evento)
+    #Salir del ciclo cuando la ventana se cierre
+    if evento == sg.WIN_CLOSED:
+        break
+    else:
+        #print(valores)
+        informacion = [valores["Decada"],valores["Experiencia"], valores["Duracion"],valores["Extra"]]
+        #print(informacion)
+        #if verificarValores() == True:
+            #buscar valores
+    
+    #window.find_element("Resultado").Update("")
+    #Limpiar valores de entrada
+    listaKeys = list(window.ReturnValuesDictionary.keys())
+    for key in listaKeys:
+        try:window.find_element(key).Update("")
+        except:pass
+window.close()
 
 #Completar al 100%

@@ -2,16 +2,24 @@ import PySimpleGUI as sg
 from pyswip import Prolog
 
 
+
 def queryFinal(habilidad,decada,duracion):
-    queryStr = f"generos(M,'{habilidad}'),juegos(V,M,'{duracion}',Y,{decada})"
+    queryStr = f"juegos(N,G,'{duracion}',S,{decada},'{habilidad}')"
     print(queryStr)
-    for i in prolog.query(queryStr):
-        print(i)
+    listaJuegos = ""
+    for juego in prolog.query(queryStr):
+        listaJuegos = listaJuegos+juego["N"] + " ("+ juego["S"]+")." +"\n"
+    print(listaJuegos)
+    return listaJuegos 
+
 def queryFinalExtra(habilidad,decada,duracion,extra):
-    queryStr = f"generos(M,'{habilidad}'),juegos(V,M,'{duracion}',Y,{decada}),adicional(M,{extra})"
+    queryStr = f"juegos(N,G,'{duracion}',S,{decada},'{habilidad}'),adicional(G,'{extra}')"
     print(queryStr)
-    for i in prolog.query(queryStr):
-        print(i)
+    listaJuegos = ""
+    for juego in prolog.query(queryStr):
+        listaJuegos = listaJuegos+juego["N"] + " ("+ juego["S"]+")." +"\n"
+    print(listaJuegos)
+    return listaJuegos 
 
 def verificar():
     if opcionDecada.get() == 0 or opcionDuracion.get() == 0 or opcionExperiencia.get() == 0:
@@ -32,7 +40,8 @@ def verificar():
 
 prolog = Prolog()
 prolog.consult("baseDeConocimiento.pl")
-
+queryFinal('Habil',90,'Corta')
+queryFinalExtra('Habil',90,'Corta','2D')
 
 
 decadas = ['90','2000','2010','2020']

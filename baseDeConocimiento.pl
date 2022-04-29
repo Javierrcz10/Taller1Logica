@@ -4,83 +4,83 @@
 %######################## Decada de los 90 #########################################################
 
 %GENERO: PLATAFORMA
-juegos('Super mario world', 'Plataforma', 'Media', '96exit', 90, 'Habil').
-juegos('Sonic the hedgehog', 'Plataforma', 'Corta', 'beat the game', 90, 'Habil').
-juegos('Super metroid', 'Plataforma', 'Media', 'any%', 90, 'Habil').
+juego('Super mario world', 'Plataforma', 'Media', '96exit', 90, 'Habil').
+juego('Sonic the hedgehog', 'Plataforma', 'Corta', 'beat the game', 90, 'Habil').
+juego('Super metroid', 'Plataforma', 'Media', 'any%', 90, 'Habil').
 
 %GENERO: FPS
-juegos('Ultimate doom', 'FPS', 'Corta', 'knee deep in the dead', 90, 'Experto').
-juegos('Wolfenstein', 'FPS', 'Larga', 'Episode1: escape from wolfenstein', 90, 'Experto').
-juegos('Half-life', 'FPS', 'Corta', 'Won', 90, 'Habil').
+juego('Ultimate doom', 'FPS', 'Corta', 'knee deep in the dead', 90, 'Experto').
+juego('Wolfenstein', 'FPS', 'Larga', 'Episode1: escape from wolfenstein', 90, 'Experto').
+juego('Half-life', 'FPS', 'Corta', 'Won', 90, 'Habil').
 
 %GENERO: ARCADE
-juegos('Street fighter II-the world warrior', 'Arcade', 'Corta', 'Normal', 90, 'Inexperto').
-juegos('Mortal kombat', 'Arcade', 'Corta', 'Arcade', 90, 'Inexperto').
-juegos('Metal slug', 'Arcade', 'Corta', 'Medium', 90, 'Habil').
+juego('Street fighter II-the world warrior', 'Arcade', 'Corta', 'Normal', 90, 'Inexperto').
+juego('Mortal kombat', 'Arcade', 'Corta', 'Arcade', 90, 'Inexperto').
+juego('Metal slug', 'Arcade', 'Corta', 'Medium', 90, 'Habil').
 
 
 %######################## Decada de los 2000 ##########################################################
 
 %GENERO: CARRERAS
-juegos('Forza Moto Sport','Carreras','Corta','individualLevels', 2000,'Inexperto').
-juegos('Grand Turismo 4','Carreras','Larga','any%',2000, 'Inexperto').
-juegos('Need For Speed Carbon','Carreras','Larga','any%',2000, 'Habil'). 
+juego('Forza Moto Sport','Carreras','Corta','individualLevels', 2000,'Inexperto').
+juego('Grand Turismo 4','Carreras','Larga','any%',2000, 'Inexperto').
+juego('Need For Speed Carbon','Carreras','Larga','any%',2000, 'Habil'). 
 
 %GENERO: DEPORTES
-juegos('Tony hawks pro skater 4','Deportes','Media','any%',2000, 'Habil').
-juegos('Fifa2006','Deportes','Corta','career mode-season%',2000, 'Inexperto').
-juegos('Winnig eleven: pro evolution soccer 2007','Deportes','Corta','any cup title in the shortest possible any%', 2000, 'Inexperto').
-juegos('Mario tennis 64','Deportes','Media','all cups, doubles', 2000, 'Inexperto').
+juego('Tony hawks pro skater 4','Deportes','Media','any%',2000, 'Habil').
+juego('Fifa2006','Deportes','Corta','career mode-season%',2000, 'Inexperto').
+juego('Winnig eleven: pro evolution soccer 2007','Deportes','Corta','any cup title in the shortest possible any%', 2000, 'Inexperto').
+juego('Mario tennis 64','Deportes','Media','all cups, doubles', 2000, 'Inexperto').
 
 %GENERO: ACCION-AVENTURA
-juegos('Zelda Majoras Mask','Accion-Avetura','Media','any%',2000, 'Experto').
-juegos('God Of War II','Accion-Avetura','Media','anyng%',2000, 'Habil').
-juegos('Resident Evil 4 (Console)' ,'Accion-Avetura','Larga','NewGame',2000, 'Habil').
+juego('Zelda Majoras Mask','Accion-Avetura','Media','any%',2000, 'Experto').
+juego('God Of War II','Accion-Avetura','Media','anyng%',2000, 'Habil').
+juego('Resident Evil 4 (Console)' ,'Accion-Avetura','Larga','NewGame',2000, 'Habil').
 
 
 %############################################# Decada de los 2010 ######################################
 
 %GENERO: RPG
-juegos('Sekiro shadow of the die twice','RPG','Corta','shura',2010,'Experto').
-juegos('Dark souls','RPG','Corta','any%',2010,'Experto').
-juegos('Bloodborne' ,'RPG','Corta' ,'any%',2010,'Experto').
+juego('Sekiro shadow of the die twice','RPG','Corta','shura',2010,'Experto').
+juego('Dark souls','RPG','Corta','any%',2010,'Experto').
+juego('Bloodborne' ,'RPG','Corta' ,'any%',2010,'Experto').
 
 %GENERO: PELICULA INTERACTIVA
-juegos('Beyone two soul','Pelicula interactiva', 'Larga', 'any%', 2010, 'Inexperto').
-juegos('Until dawn','Pelicula interactiva', 'Larga', 'any%', 2010, 'Habil').
-juegos('Detroid become human','Pelicula interactiva', 'Larga' , 'any%', 2010, 'Inexperto').
+juego('Beyone two soul','Pelicula interactiva', 'Larga', 'any%', 2010, 'Inexperto').
+juego('Until dawn','Pelicula interactiva', 'Larga', 'any%', 2010, 'Habil').
+juego('Detroid become human','Pelicula interactiva', 'Larga' , 'any%', 2010, 'Inexperto').
 
 %GENERO: MUSICA
-juegos('Just dance 2018','Musica', 'Larga' ,'5stars%',2010,'Inexperto').
-juegos('Guitar hero warrios of rock','Musica', 'Larga', 'quest mode any% co-op',2010,'Habil').
-juegos('Rock band 4','Musica', 'Larga' , 'full game full combo',2010,'Habil').
+juego('Just dance 2018','Musica', 'Larga' ,'5stars%',2010,'Inexperto').
+juego('Guitar hero warrios of rock','Musica', 'Larga', 'quest mode any% co-op',2010,'Habil').
+juego('Rock band 4','Musica', 'Larga' , 'full game full combo',2010,'Habil').
 
 
 %################################ Decada de los 2020 ######################################################
 
 %GENERO: FPS
-juegos('Doom eternal', 'FPS', 'Corta', 'any%', 2020, 'Habil').
-juegos('Call of duty cold war', 'FPS', 'Media','any%', 2020, 'Inexperto').
-juegos('Far cry 6','FPS', 'Media','any%', 2020, 'Habil').
+juego('Doom eternal', 'FPS', 'Corta', 'any%', 2020, 'Habil').
+juego('Call of duty cold war', 'FPS', 'Media','any%', 2020, 'Inexperto').
+juego('Far cry 6','FPS', 'Media','any%', 2020, 'Habil').
 
 %GENERO: RPG
-juegos('Mortal shell', 'RPG', 'Corta','any%', 2020, 'Experto').
-juegos('Elden ring', 'RPG', 'Corta', 'any%', 2020, 'Experto').
-juegos('Persona 5 royal', 'RPG', 'Larga','hard,true ending', 2020, 'Experto').
-juegos('Pokémon mystery dungeon: rescue team DX','RPG','Larga','any% WM', 2020, 'Experto').
+juego('Mortal shell', 'RPG', 'Corta','any%', 2020, 'Experto').
+juego('Elden ring', 'RPG', 'Corta', 'any%', 2020, 'Experto').
+juego('Persona 5 royal', 'RPG', 'Larga','hard,true ending', 2020, 'Experto').
+juego('Pokémon mystery dungeon: rescue team DX','RPG','Larga','any% WM', 2020, 'Experto').
 
 
 %GENERO: DEPORTES
-juegos('Nba 2k22', 'Deportes', 'Corta','play now', 2020, 'Inexperto').
-juegos('Fifa 2020', 'Deportes', 'Corta', 'champions league', 2020, 'Inexperto').
-juegos('Mario golf super rush', 'Deportes', 'Media','all courses', 2020, 'Inexperto').
+juego('Nba 2k22', 'Deportes', 'Corta','play now', 2020, 'Inexperto').
+juego('Fifa 2020', 'Deportes', 'Corta', 'champions league', 2020, 'Inexperto').
+juego('Mario golf super rush', 'Deportes', 'Media','all courses', 2020, 'Inexperto').
 
 %############################################# Adicionales ###############################################
 adicional('Plataforma', '2D').
-adicional('FPS', 'Precisión').
-adicional('Carreras', 'Simulación').
+adicional('FPS', 'Precision').
+adicional('Carreras', 'Simulacion').
 adicional('Deportes', 'Competitivo').
-adicional('Accion-Aventura', 'Exploración').
+adicional('Accion-Aventura', 'Exploracion').
 adicional('RPG', 'Ingenio').
 adicional('Pelicula interactiva', 'Toma de decisiones').
 adicional('Musica', 'Reflejos').

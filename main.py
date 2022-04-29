@@ -109,7 +109,7 @@ def concatenarJuegos(listaDeJuegos):
     i = 1
     cantJuegos = len(listaDeJuegos)
     while i < cantJuegos:
-         stringJuegos = stringJuegos + listaDeJuegos[i][0] + "(" + listaDeJuegos[i][1] + ")" + "\n"
+         stringJuegos = stringJuegos + listaDeJuegos[i][0] + " (" + listaDeJuegos[i][1] + ")" + "\n"
          i = i + 1
     return stringJuegos
 

@@ -33,9 +33,9 @@ juego('Winnig eleven: pro evolution soccer 2007','Deportes','Corta','any cup tit
 juego('Mario tennis 64','Deportes','Media','all cups, doubles', 2000, 'Inexperto').
 
 %GENERO: ACCION-AVENTURA
-juego('Zelda Majoras Mask','Accion-Avetura','Media','any%',2000, 'Experto').
-juego('God Of War II','Accion-Avetura','Media','anyng%',2000, 'Habil').
-juego('Resident Evil 4 (Console)' ,'Accion-Avetura','Larga','NewGame',2000, 'Habil').
+juego('Zelda Majoras Mask','Accion-Aventura','Media','any%',2000, 'Experto').
+juego('God Of War II','Accion-Aventura','Media','anyng%',2000, 'Habil').
+juego('Resident Evil 4 (Console)' ,'Accion-Aventura','Larga','NewGame',2000, 'Habil').
 
 
 %############################################# Decada de los 2010 ######################################
@@ -67,7 +67,7 @@ juego('Far cry 6','FPS', 'Media','any%', 2020, 'Habil').
 juego('Mortal shell', 'RPG', 'Corta','any%', 2020, 'Experto').
 juego('Elden ring', 'RPG', 'Corta', 'any%', 2020, 'Experto').
 juego('Persona 5 royal', 'RPG', 'Larga','hard,true ending', 2020, 'Experto').
-juego('Pokémon mystery dungeon: rescue team DX','RPG','Larga','any% WM', 2020, 'Experto').
+juego('Pokemon mystery dungeon: rescue team DX','RPG','Larga','any% WM', 2020, 'Experto').
 
 
 %GENERO: DEPORTES

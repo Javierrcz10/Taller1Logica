@@ -2,23 +2,84 @@ import PySimpleGUI as sg
 from pyswip import Prolog
 
 
+def juntarPorCategoria(juegosEncontrados):
+    listaJuegos = []
+    if(len(juegosEncontrados) == 0):
+        print("No encontre juego")
+        #QUITAR PARAMETRO
+        return 
+    #Se agrega a la lista los generos encontrados
+    for juego in juegosEncontrados:
+        esta = False
+        for lista in listaJuegos:
+            if(juego["G"] in lista):
+                esta = True
+        if (not esta):
+            listaJuegos.append([juego["G"]])
+    #Se agrupan los juegos segun su categoria
+    for juego in juegosEncontrados:
+        for lista in listaJuegos:
+            if(lista[0] == juego["G"]):
+                lista.append([juego["N"],juego["S"]])
+                break
+    return listaJuegos
 
-def queryFinal(habilidad,decada,duracion):
+def querySinDuracion(habilidad,decada):
+    queryStr = f"juegos(N,G,D,S,{decada},'{habilidad}')"
+    juegosEncontrados = list(prolog.query(queryStr))
+    print("CASO SIN DURACION")
+    listaJuegos = juntarPorCategoria(juegosEncontrados)
+    print(listaJuegos)
+
+
+def generoMasJuegos(listaJuegos):
+    listaLargos= []
+    #Guarda en la lista de largos la cantidad de juegos por genero
+    for genero in listaJuegos:
+        listaLargos.append(len(genero)-1)
+    cantidadMaxima = max(listaLargos)
+    cantidadMaximos = listaLargos.count(cantidadMaxima)
+    indiceMaximo = listaLargos.index(cantidadMaxima)
+    if (cantidadMaximos > 1): #La busqueda es ambigua
+        return -1
+    return indiceMaximo #Retorna el genero con mas juegos
+
+def querySinDecada(habilidad,duracion):
+    print("Caso sin decada")
+    queryStr = f"juegos(N,G,'{duracion}',S,D,'{habilidad}')"
+    juegosEncontrados = list(prolog.query(queryStr))
+    listaJuegos = juntarPorCategoria(juegosEncontrados)
+    indiceGeneroMasJuegos = generoMasJuegos(listaJuegos)
+    if(indiceGeneroMasJuegos == -1):
+        print("Varios maximos")
+        return listaJuegos
+    return listaJuegos[indiceGeneroMasJuegos]
+
+def queryCompleta(habilidad, decada, duracion):
     queryStr = f"juegos(N,G,'{duracion}',S,{decada},'{habilidad}')"
-    print(queryStr)
-    listaJuegos = ""
-    for juego in prolog.query(queryStr):
-        listaJuegos = listaJuegos+juego["N"] + " ("+ juego["S"]+")." +"\n"
-    print(listaJuegos)
-    return listaJuegos 
+    listaJuegos = []
+    juegosEncontrados = list(prolog.query(queryStr))
+    if(len(juegosEncontrados) == 0):
+        print("No encontre juego")
+        #QUITAR PARAMETRO
+        return querySinDecada(habilidad,duracion)
+    #Se agrega a la lista los generos encontrados
+    listaJuegos = juntarPorCategoria(juegosEncontrados)
+    #Se selecciona el genero con mas juegos encontrados
+    indiceGeneroMasJuegos = generoMasJuegos(listaJuegos)
+    if (indiceGeneroMasJuegos == -1): #Existe generos con más de un maximo
+        return querySinDecada(habilidad,duracion)
+    #Si existe un resultado concreto
+    return listaJuegos[indiceGeneroMasJuegos]
 
-def queryFinalExtra(habilidad,decada,duracion,extra):
+def queryAdicional(habilidad,decada,duracion,extra):
     queryStr = f"juegos(N,G,'{duracion}',S,{decada},'{habilidad}'),adicional(G,'{extra}')"
-    print(queryStr)
-    listaJuegos = ""
-    for juego in prolog.query(queryStr):
-        listaJuegos = listaJuegos+juego["N"] + " ("+ juego["S"]+")." +"\n"
-    print(listaJuegos)
+    listaJuegos = []
+    juegosEncontrados = list(prolog.query(queryStr))
+    if(len(juegosEncontrados) == 0): # Si no encontro juegos 
+        print("No se encontro con parametro adicional")
+        return queryCompleta(habilidad,decada,duracion)
+    listaJuegos = juntarPorCategoria(juegosEncontrados)
     return listaJuegos 
 
 def verificar():
@@ -30,18 +91,41 @@ def verificar():
     decada = int(decadas[opcionDecada.get()-1])
     duracion = duraciones[opcionDuracion.get()-1]
     if opcionExtra.get() == 0:
-        queryFinal(habilidad,decada,duracion)
+        queryCompleta(habilidad,decada,duracion)
     else:
         extra = extras[opcionExtra.get()-1]
-        queryFinalExtra(habilidad,decada,duracion,extra)
+        queryAdicional(habilidad,decada,duracion,extra)
 
-
+def test():
+    habilidades =["Inexperto","Habil","Experto"]
+    decadas = [90,2000,2010,2020]
+    duraciones = ["Corta","Media","Larga"]
+    for habilidad in habilidades:
+        for decada in decadas:
+            for duracion in duraciones:
+                print("####", habilidad, ", ",decada, ", ",duracion)
+                print(queryCompleta(habilidad,decada,duracion))
+                print("\n")
+def testAdicional():
+    habilidades =["Inexperto","Habil","Experto"]
+    decadas = [90,2000,2010,2020]
+    duraciones = ["Corta","Media","Larga"]
+    adicionales = ["2D", "Precisión", "Simulación", "Competitivo", "Exploración","Ingenio", "Toma de decisiones", "Reflejos"]
+    for habilidad in habilidades:
+        for decada in decadas:
+            for duracion in duraciones:
+                for adicional in adicionales:
+                    print("####", habilidad, ", ",decada, ", ",duracion, ", ", adicional)
+                    print(queryAdicional(habilidad,decada,duracion,adicional))
+                    print("\n")
 
 
 prolog = Prolog()
 prolog.consult("baseDeConocimiento.pl")
-queryFinal('Habil',90,'Corta')
-queryFinalExtra('Habil',90,'Corta','2D')
+#queryCompleta('Experto',2020,'Larga')
+testAdicional()
+#queryAdicional('Habil',90,'Corta','3D')
+#querySinDecada("Experto", "Corta")
 
 
 decadas = ['90','2000','2010','2020']

@@ -29,13 +29,13 @@ juegos('Need For Speed Carbon','Carreras','Larga','any%',2000, 'Habil').
 
 %GENERO: DEPORTES
 juegos('Tony hawks pro skater 4','Deportes','Media','any%',2000, 'Habil').
-juegos('Fifa2006','Deportes','Corto','career mode-season%',2000, 'Inexperto').
-juegos('Winnig eleven: pro evolution soccer 2007','Deportes','Corto','any cup title in the shortest possible any%', 2000, 'Inexperto').
+juegos('Fifa2006','Deportes','Corta','career mode-season%',2000, 'Inexperto').
+juegos('Winnig eleven: pro evolution soccer 2007','Deportes','Corta','any cup title in the shortest possible any%', 2000, 'Inexperto').
 
 %GENERO: ACCION-AVENTURA
-juegos('Zelda Majoras Mask','Accion-Avetura','Medio','any%',2000, 'Habil').
-juegos('God Of War II','Accion-Avetura','Medio','anyng%',2000, 'Habil').
-juegos('Resident Evil 4 (Console)' ,'Accion-Avetura','Largo','NewGame',2000, 'Habil').
+juegos('Zelda Majoras Mask','Accion-Avetura','Media','any%',2000, 'Experto').
+juegos('God Of War II','Accion-Avetura','Media','anyng%',2000, 'Habil').
+juegos('Resident Evil 4 (Console)' ,'Accion-Avetura','Larga','NewGame',2000, 'Habil').
 
 
 %############################################# Decada de los 2010 ######################################
@@ -48,7 +48,7 @@ juegos('Bloodborne' ,'RPG','Corta' ,'any%',2010,'Experto').
 %GENERO: PELICULA INTERACTIVA
 juegos('Beyone two soul','Pelicula interactiva', 'Larga', 'any%', 2010, 'Inexperto').
 juegos('Until dawn','Pelicula interactiva', 'Larga', 'any%', 2010, 'Habil').
-juegos('Detroid become human','Pelicula interactiva', 'largo' , 'any%', 2010, 'Inexperto').
+juegos('Detroid become human','Pelicula interactiva', 'Larga' , 'any%', 2010, 'Inexperto').
 
 %GENERO: MUSICA
 juegos('Just dance 2018','Musica', 'Larga' ,'5stars%',2010,'Inexperto').
@@ -67,11 +67,15 @@ juegos('Far cry 6','FPS', 'Media','any%', 2020, 'Habil').
 juegos('Mortal shell', 'RPG', 'Corta','any%', 2020, 'Experto').
 juegos('Elden ring', 'RPG', 'Corta', 'any%', 2020, 'Experto').
 juegos('Persona 5 royal', 'RPG', 'Larga','hard,true ending', 2020, 'Experto').
+juegos('Pokémon mystery dungeon: rescue team DX','RPG','Larga','any% WM', 2020, 'Experto').
+
 
 %GENERO: DEPORTES
 juegos('Nba 2k22', 'Deportes', 'Corta','play now', 2020, 'Inexperto').
 juegos('Fifa 2020', 'Deportes', 'Corta', 'champions league', 2020, 'Inexperto').
 juegos('Mario golf super rush', 'Deportes', 'Media','all courses', 2020, 'Inexperto').
+juegos('Mario tennis 64','Deportes','Media','all cups, doubles', 2000, 'Inexperto').
+
 
 %###################### Generos ##########################################################################
 generos('Plataforma', 'Inexperto').

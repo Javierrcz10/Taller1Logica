@@ -4,8 +4,8 @@ from pyswip import Prolog
 
 #Entrada: Lista de juegos
 #Salida : Lista de juegos
-#Función: Ordenar los juegos por categoria
-def juntarPorCategoria(juegosEncontrados):
+#Función: Ordenar los juegos por género
+def juntarPorGenero(juegosEncontrados):
     listaJuegos = []
     #Se agrega a la lista los géneros encontrados
     for juego in juegosEncontrados:
@@ -48,7 +48,7 @@ def querySinDecada(habilidad,duracion):
     #Hacer consulta
     juegosEncontrados = list(prolog.query(queryStr))
     #Verificar respuesta
-    listaJuegos = juntarPorCategoria(juegosEncontrados)
+    listaJuegos = juntarPorGenero(juegosEncontrados)
     indiceGeneroMasJuegos = generoMasJuegos(listaJuegos)
     if(indiceGeneroMasJuegos == -1): #No se pudo determinar género
         return listaJuegos, 3
@@ -65,7 +65,7 @@ def queryCompleta(habilidad, decada, duracion):
         #QUITAR PARAMETRO
         return querySinDecada(habilidad,duracion)
     #Se agrega a la lista los géneros encontrados
-    listaJuegos = juntarPorCategoria(juegosEncontrados)
+    listaJuegos = juntarPorGenero(juegosEncontrados)
     #Se selecciona el género con mas juegos encontrados
     indiceGeneroMasJuegos = generoMasJuegos(listaJuegos)
     if (indiceGeneroMasJuegos == -1): #Existe géneros con más de un maximo
@@ -84,7 +84,7 @@ def queryAdicional(habilidad,decada,duracion,extra):
     juegosEncontrados = list(prolog.query(queryStr))
     if(len(juegosEncontrados) == 0): # Si no encontro juegos 
         return queryCompleta(habilidad,decada,duracion)
-    listaJuegos = juntarPorCategoria(juegosEncontrados)
+    listaJuegos = juntarPorGenero(juegosEncontrados)
     return listaJuegos[0], 0 #Retornar lista de juegos con el género
 
 #Entrada: datos ingresados por el usuario, lista de valores validos
@@ -130,7 +130,7 @@ prolog.consult("baseDeConocimiento.pl")
 decadas = [90,2000,2010,2020]
 duraciones = ['Larga','Media','Corta']
 experiencias = ['Inexperto','Hábil','Experto']
-extras = ['','2D','Precisión','Simulación','Competitivo','Exploración','Ingenio','Toma de decisiones','Reflejos']
+extras = ['','2D','Precisión', 'Retro','Simulación','Competitivo','Exploración','Ingenio','Toma de decisiones','Reflejos']
 listaEntradas = [decadas,experiencias,duraciones,extras]
 
 #Contruir el contenido de la ventana principal

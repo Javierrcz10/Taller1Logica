@@ -4,10 +4,6 @@ from pyswip import Prolog
 
 def juntarPorCategoria(juegosEncontrados):
     listaJuegos = []
-    if(len(juegosEncontrados) == 0):
-        print("No encontre juego")
-        #QUITAR PARAMETRO
-        return 
     #Se agrega a la lista los generos encontrados
     for juego in juegosEncontrados:
         esta = False
@@ -24,13 +20,6 @@ def juntarPorCategoria(juegosEncontrados):
                 break
     return listaJuegos
 
-def querySinDuracion(habilidad,decada):
-    queryStr = f"juegos(N,G,D,S,{decada},'{habilidad}')"
-    juegosEncontrados = list(prolog.query(queryStr))
-    print("CASO SIN DURACION")
-    listaJuegos = juntarPorCategoria(juegosEncontrados)
-    print(listaJuegos)
-
 
 def generoMasJuegos(listaJuegos):
     listaLargos= []
@@ -45,22 +34,19 @@ def generoMasJuegos(listaJuegos):
     return indiceMaximo #Retorna el genero con mas juegos
 
 def querySinDecada(habilidad,duracion):
-    print("Caso sin decada")
     queryStr = f"juegos(N,G,'{duracion}',S,D,'{habilidad}')"
     juegosEncontrados = list(prolog.query(queryStr))
     listaJuegos = juntarPorCategoria(juegosEncontrados)
     indiceGeneroMasJuegos = generoMasJuegos(listaJuegos)
     if(indiceGeneroMasJuegos == -1):
-        print("Varios maximos")
-        return listaJuegos
-    return listaJuegos[indiceGeneroMasJuegos]
+        return listaJuegos, 3
+    return listaJuegos[indiceGeneroMasJuegos], 2
 
 def queryCompleta(habilidad, decada, duracion):
     queryStr = f"juegos(N,G,'{duracion}',S,{decada},'{habilidad}')"
     listaJuegos = []
     juegosEncontrados = list(prolog.query(queryStr))
     if(len(juegosEncontrados) == 0):
-        print("No encontre juego")
         #QUITAR PARAMETRO
         return querySinDecada(habilidad,duracion)
     #Se agrega a la lista los generos encontrados
@@ -70,32 +56,18 @@ def queryCompleta(habilidad, decada, duracion):
     if (indiceGeneroMasJuegos == -1): #Existe generos con más de un maximo
         return querySinDecada(habilidad,duracion)
     #Si existe un resultado concreto
-    return listaJuegos[indiceGeneroMasJuegos]
+    return listaJuegos[indiceGeneroMasJuegos], 1
 
 def queryAdicional(habilidad,decada,duracion,extra):
     queryStr = f"juegos(N,G,'{duracion}',S,{decada},'{habilidad}'),adicional(G,'{extra}')"
     listaJuegos = []
     juegosEncontrados = list(prolog.query(queryStr))
     if(len(juegosEncontrados) == 0): # Si no encontro juegos 
-        print("No se encontro con parametro adicional")
         return queryCompleta(habilidad,decada,duracion)
     listaJuegos = juntarPorCategoria(juegosEncontrados)
-    return listaJuegos 
+    return listaJuegos, 0
 
-def verificar():
-    if opcionDecada.get() == 0 or opcionDuracion.get() == 0 or opcionExperiencia.get() == 0:
-        
-        return None
-    
-    habilidad = experiencias[opcionExperiencia.get()-1]
-    decada = int(decadas[opcionDecada.get()-1])
-    duracion = duraciones[opcionDuracion.get()-1]
-    if opcionExtra.get() == 0:
-        queryCompleta(habilidad,decada,duracion)
-    else:
-        extra = extras[opcionExtra.get()-1]
-        queryAdicional(habilidad,decada,duracion,extra)
-
+#Esta función se debe borrar antes de entregar
 def test():
     habilidades =["Inexperto","Habil","Experto"]
     decadas = [90,2000,2010,2020]
@@ -106,6 +78,8 @@ def test():
                 print("####", habilidad, ", ",decada, ", ",duracion)
                 print(queryCompleta(habilidad,decada,duracion))
                 print("\n")
+
+#Esta función se debe borrar antes de entregar
 def testAdicional():
     habilidades =["Inexperto","Habil","Experto"]
     decadas = [90,2000,2010,2020]
@@ -119,20 +93,36 @@ def testAdicional():
                     print(queryAdicional(habilidad,decada,duracion,adicional))
                     print("\n")
 
+def verificarValores(datos,lista):
+    faltantes = ""
+    nombres = ["Década","Experiencia","Duración"]
+    for i in range(3):
+        print(i)
+        if datos[i] not in lista[i]:
+            faltantes = faltantes + " " + nombres[i]
+    if faltantes == "":
+        return True
+    else:
+        return faltantes
+
+def concatenarJuegos(listaDeJuegos):
+    stringJuegos = ""
+    i = 1
+    cantJuegos = len(listaDeJuegos)
+    while i < cantJuegos:
+         stringJuegos = stringJuegos + listaDeJuegos[i][0] + "(" + listaDeJuegos[i][1] + ")" + "\n"
+         i = i + 1
+    return stringJuegos
 
 prolog = Prolog()
 prolog.consult("baseDeConocimiento.pl")
-#queryCompleta('Experto',2020,'Larga')
-testAdicional()
-#queryAdicional('Habil',90,'Corta','3D')
-#querySinDecada("Experto", "Corta")
 
 
-decadas = ['90','2000','2010','2020']
+decadas = [90,2000,2010,2020]
 duraciones = ['Larga','Media','Corta']
 experiencias = ['Inexperto','Habil','Experto']
-extras = ['2D','Precisión','Simulación','Competitivo','Exploración','Ingenio','Toma de decisiones','Reflejos']
-
+extras = ['','2D','Precisión','Simulación','Competitivo','Exploración','Ingenio','Toma de decisiones','Reflejos']
+listaEntradas = [decadas,experiencias,duraciones,extras]
 #Contruir el contenido de la ventana principal
 layoutPrincipal = [[sg.Text("(Obligatorio)  Década:"),sg.Stretch(), sg.Combo(values = decadas,  key= "Decada", size=(18,4),readonly=True) ],
                    [sg.Text("(Obligatorio)  Experiencia:"),sg.Stretch(),sg.Combo(values = experiencias, key = "Experiencia", size=(18,4),readonly=True)],
@@ -140,33 +130,64 @@ layoutPrincipal = [[sg.Text("(Obligatorio)  Década:"),sg.Stretch(), sg.Combo(va
                    [sg.Text("Extra:"),sg.Stretch(),sg.Combo(values = extras, key = "Extra", readonly=True, size=(18,4))],
                    [sg.Stretch(),sg.OK(button_text="Buscar")],
                    [sg.Text("Respuesta:")],
-                   [sg.Output(key = "Resultado")]]
+                   [sg.Multiline(size=(50,9),key = "Resultado", disabled=True)]]
 
 
 #Crear la ventana
-window = sg.Window("Recomendador", layoutPrincipal,resizable=True)
+window = sg.Window("Recomendador", layoutPrincipal).finalize()
+
+#Hacer que el cuado Output solo sea de lectura
 
 #Ciclo while para registrar los eventos de la ventanas
 loop = True
 while loop:
     evento, valores = window.read()
-    print(evento)
     #Salir del ciclo cuando la ventana se cierre
     if evento == sg.WIN_CLOSED:
         break
+    #Cuando presione el boton Buscar
     else:
-        #print(valores)
+        #Verificar si se ingresaron los datos de entrada obligatorios
         informacion = [valores["Decada"],valores["Experiencia"], valores["Duracion"],valores["Extra"]]
-        #print(informacion)
-        #if verificarValores() == True:
-            #buscar valores
-    
-    #window.find_element("Resultado").Update("")
-    #Limpiar valores de entrada
-    listaKeys = list(window.ReturnValuesDictionary.keys())
-    for key in listaKeys:
-        try:window.find_element(key).Update("")
-        except:pass
-window.close()
-
-#Completar al 100%
+        verificacion = verificarValores(informacion,listaEntradas)
+        #Si el ingreso de datos fue correcto se realizan consultas a la base de conocimiento
+        if verificacion == True:
+            #Se escoge el tipo de consulta dependiendo si el usuario ingreso o no un dato extra
+            if informacion[3] == '':
+                busqueda, identificador = queryCompleta(informacion[1], informacion[0], informacion[2])
+                if identificador == 1:
+                    generoRecomendado = "Los juegos del género " + busqueda[0] + " seran de su agrado.\n\n"
+                if identificador == 2:
+                    generoRecomendado = "No se pudo encontrar juegos con los datos seleccionados.\n"
+                    generoRecomendado = generoRecomendado + "Pero quitando el parámetro (Década) se obtiene que el género "
+                    generoRecomendado = generoRecomendado + busqueda[0] + " es una buena eleccion.\n\n"
+                if identificador == 3:
+                    generoRecomendado = "El recomendador no pudo determinar un género en especifico, aun quitando el parámetro (Década).\n"
+                    generoRecomendado = generoRecomendado + "Pero se encontraron los siguientes juegos que pueden ser de su disfrute.\n\n"
+                stringJuegos = concatenarJuegos(busqueda)
+                respuesta = generoRecomendado + stringJuegos
+            else:
+                busqueda, identificador = queryAdicional(informacion[1], informacion[0], informacion[2], informacion[3])
+                if identificador == 0:
+                    generoRecomendado = "Los juegos del género " + busqueda[0] + " seran de su agrado.\n\n"
+                if identificador == 1:
+                    generoRecomendado = "No se pudo encontrar juegos con los datos seleccionados.\n"
+                    generoRecomendado = generoRecomendado + "Pero quitando el parámetro (Extra) se obtiene que el género "
+                    generoRecomendado = generoRecomendado + busqueda[0] + " es una buena eleccion.\n\n"
+                if identificador == 2:
+                    generoRecomendado = "No se pudo encontrar juegos con los datos seleccionados.\n"
+                    generoRecomendado = generoRecomendado + "Pero quitando el parámetro (Extra) y (Década) se obtiene que el género "
+                    generoRecomendado = generoRecomendado + busqueda[0] + " es una buena eleccion.\n\n"
+                if identificador == 3:
+                    generoRecomendado = "El recomendador no pudo determinar un género en especifico, aun quitando los parámetros (Extra) y (Década).\n"
+                    generoRecomendado = generoRecomendado + "Pero se encontraron los siguientes juegos que pueden ser de su disfrute.\n\n"
+                stringJuegos = concatenarJuegos(busqueda)
+                respuesta = generoRecomendado + stringJuegos
+            #Mostrar el resultado de la query al usuario por la interfaz
+            window.find_element("Resultado").Update(respuesta)
+        #Si faltaron datos por ingresar
+        else:
+            #Se identifican los datos que faltan y se da el aviso al usuario por pantalla
+            error = "Faltó seleccionar:" + verificacion
+            window.find_element("Resultado").Update(error)
+#Fin del programa

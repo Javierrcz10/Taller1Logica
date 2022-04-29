@@ -1,6 +1,5 @@
 %juegos(nombre,genero,duracion,categoriaSpeed,decada)
-%generos(genero,experiencia)
-%adicional(genero,extra,nombreJuego)
+%adicional(genero,extra)
 
 %######################## Decada de los 90 #########################################################
 
@@ -31,6 +30,7 @@ juegos('Need For Speed Carbon','Carreras','Larga','any%',2000, 'Habil').
 juegos('Tony hawks pro skater 4','Deportes','Media','any%',2000, 'Habil').
 juegos('Fifa2006','Deportes','Corta','career mode-season%',2000, 'Inexperto').
 juegos('Winnig eleven: pro evolution soccer 2007','Deportes','Corta','any cup title in the shortest possible any%', 2000, 'Inexperto').
+juegos('Mario tennis 64','Deportes','Media','all cups, doubles', 2000, 'Inexperto').
 
 %GENERO: ACCION-AVENTURA
 juegos('Zelda Majoras Mask','Accion-Avetura','Media','any%',2000, 'Experto').
@@ -74,19 +74,6 @@ juegos('Pokémon mystery dungeon: rescue team DX','RPG','Larga','any% WM', 2020,
 juegos('Nba 2k22', 'Deportes', 'Corta','play now', 2020, 'Inexperto').
 juegos('Fifa 2020', 'Deportes', 'Corta', 'champions league', 2020, 'Inexperto').
 juegos('Mario golf super rush', 'Deportes', 'Media','all courses', 2020, 'Inexperto').
-juegos('Mario tennis 64','Deportes','Media','all cups, doubles', 2000, 'Inexperto').
-
-
-%###################### Generos ##########################################################################
-generos('Plataforma', 'Inexperto').
-generos('FPS', 'Experto').
-generos('Arcade', 'Habil').
-generos('Carreras', 'Habil').
-generos('Deportes', 'Inexperto').
-generos('Accion-Avetura', 'Habil').
-generos('RPG', 'Experto').
-generos('Pelicula interactiva', 'Inexperto').
-generos('Musica', 'Inexperto').
 
 %############################################# Adicionales ###############################################
 adicional('Plataforma', '2D').

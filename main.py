@@ -97,7 +97,6 @@ def verificarValores(datos,lista):
     faltantes = ""
     nombres = ["Década","Experiencia","Duración"]
     for i in range(3):
-        print(i)
         if datos[i] not in lista[i]:
             faltantes = faltantes + " " + nombres[i]
     if faltantes == "":
